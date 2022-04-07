@@ -42,13 +42,17 @@
 // This program periodically samples ADC0 channel 0 and stores the
 // result to a global variable that can be accessed with the JTAG
 // debugger and viewed with the variable watch feature.
+int k;
+int frequency;
 
-void calculateDFT(int len, uint32_t *buffer, int *output)
-{
+int maxIdx = -1;
+
+void calculateDFT(int len, uint32_t *buffer, double *output){
     int xn[len];
     float Xr[len];
     float Xi[len];
-    int i, k, n, N = 0;
+    int i, n, N = 0;
+	  double maxSoFar = -1.0;
   
     for (i = 0; i < len; i++) {
   
@@ -70,14 +74,24 @@ void calculateDFT(int len, uint32_t *buffer, int *output)
                    + xn[n] * sin(2 * 3.141592 * k * n / N));
         }
 		
-				int val = sqrt((Xr[k] * Xr[k]) + (Xi[k] * Xi[k]));
+				double val = sqrt((Xr[k] * Xr[k]) + (Xi[k] * Xi[k]));
 				output[k] = val;
+				if(val > maxSoFar){
+					maxIdx = k;
+					maxSoFar = val;
+				}
     }
 }
 
+
+void calculateFreq(double *output, int samplingRate){
+	frequency = maxIdx * samplingRate / BUFFER_SIZE;
+}
+
+
 uint32_t ADCvalue;
 uint32_t buffer[BUFFER_SIZE];
-int output[BUFFER_SIZE];
+double output[BUFFER_SIZE];
 uint32_t idx = 0;
 
 void RealTimeTask(uint32_t data){
@@ -86,15 +100,17 @@ void RealTimeTask(uint32_t data){
 	if(idx < BUFFER_SIZE){
 		buffer[idx] = ADCvalue;
 		idx++;
-	}else if(idx >= BUFFER_SIZE){
-		calculateDFT(BUFFER_SIZE, buffer, output);
+	}else if(idx >= BUFFER_SIZE && k < BUFFER_SIZE){
+		//calculateDFT(BUFFER_SIZE, buffer, output);
+	} else{
+		//calculateFreq(output, 2000);
 	}
 }
 int main(void){
 	TExaS_Init(SCOPE_PD2);
   PLL_Init(Bus80MHz);                      // 80 MHz system clock
   LaunchPad_Init();                        // activate port F
-  ADC0_InitTimer0ATriggerSeq0(3, 1000,&RealTimeTask); // ADC channel 3, 100 Hz sampling
+  ADC0_InitTimer0ATriggerSeq0(3, 2000,&RealTimeTask); // ADC channel 3, 100 Hz sampling
   PF2 = 0;              // turn off LED
   EnableInterrupts();
   while(1){
