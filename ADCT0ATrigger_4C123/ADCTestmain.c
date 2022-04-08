@@ -33,8 +33,9 @@
 #include "../inc/LaunchPad.h"
 #include "../inc/Texas.h"
 #include "math.h"
+#include "Speaker.h"
 
-#define BUFFER_SIZE 500
+#define BUFFER_SIZE 15000
 
 
 //debug code
@@ -90,9 +91,10 @@ void calculateFreq(double *output, int samplingRate){
 
 
 uint32_t ADCvalue;
-uint32_t buffer[BUFFER_SIZE];
-double output[BUFFER_SIZE];
+uint16_t buffer[BUFFER_SIZE];
 uint32_t idx = 0;
+int isFull = 0;
+int isPlayed = 0;
 
 void RealTimeTask(uint32_t data){
   PF3 ^= 0x04;           // toggle LED
@@ -101,20 +103,31 @@ void RealTimeTask(uint32_t data){
 		buffer[idx] = ADCvalue;
 		idx++;
 	}else if(idx >= BUFFER_SIZE && k < BUFFER_SIZE){
+		isFull = 1;
 		//calculateDFT(BUFFER_SIZE, buffer, output);
 	} else{
-		//calculateFreq(output, 2000);
+		//calculateFreq(output, 1000);
 	}
 }
 int main(void){
-	TExaS_Init(SCOPE_PD2);
+	TExaS_Init(SCOPE_PE2);
   PLL_Init(Bus80MHz);                      // 80 MHz system clock
   LaunchPad_Init();                        // activate port F
-  ADC0_InitTimer0ATriggerSeq0(3, 2000,&RealTimeTask); // ADC channel 3, 100 Hz sampling
-  PF2 = 0;              // turn off LED
+  ADC0_InitTimer0ATriggerSeq0(0, 11025,&RealTimeTask); // ADC channel 3, 100 Hz sampling
+  SpeakerInit();
+	PF2 = 0;              // turn off LED
   EnableInterrupts();
-  while(1){
+  //Sound_Dire();
+	while(1){
     PF2 ^= 0x04;           // toggle LED
+		if(isFull && !isPlayed){
+			isPlayed = 1;
+			//Sound_Dire();
+			SpeakerPlay(buffer, BUFFER_SIZE);
+			
+			isFull = 0;
+			
+		}
   }
 }
 

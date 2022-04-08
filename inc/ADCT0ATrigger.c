@@ -116,10 +116,10 @@ uint32_t period;
     return 0;                                 // invalid input, do nothing
   }
   period = 80000000/fs;  // timer ticks per sample, 80MHz
-  if(period < 8000){      // 10kHz max sampling
-    ADCTask = &dummyADC;  // user function
-    return 0;
-  }
+//  if(period < 8000){      // 10kHz max sampling
+//    ADCTask = &dummyADC;  // user function
+//    return 0;
+//  }
   ADCTask = task;  // user function
 
   // **** GPIO pin initialization ****
