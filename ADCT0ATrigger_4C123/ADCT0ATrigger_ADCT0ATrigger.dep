@@ -1,7 +1,7 @@
 Dependencies for Project 'ADCT0ATrigger', Target 'ADCT0ATrigger': (DO NOT MODIFY !)
 CompilerVersion: 5060750::V5.06 update 6 (build 750)::ARMCC
 F (.\startup.s)(0x624F8052)(--cpu Cortex-M4 -g --apcs=interwork --pd "__MICROLIB SETA 1"-I.\RTE\_ADCT0ATrigger-IC:\Users\ayaan\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Users\ayaan\AppData\Local\Arm\Packs\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123--pd "__UVISION_VERSION SETA 529" --pd "_RTE_ SETA 1" --pd "TM4C123GH6PM SETA 1"--list .\startup.lst --xref -o .\startup.o --depend .\startup.d)
-F (.\ADCTestmain.c)(0x624FDF32)(-c --cpu Cortex-M4 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .. -I ..\..\.. --C99-I.\RTE\_ADCT0ATrigger-IC:\Users\ayaan\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Users\ayaan\AppData\Local\Arm\Packs\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="529" -D_RTE_ -DTM4C123GH6PM -Drvmdk -DPART_LM4F120H5QR-o .\adctestmain.o --omf_browse .\adctestmain.crf --depend .\adctestmain.d)
+F (.\ADCTestmain.c)(0x624FE3BB)(-c --cpu Cortex-M4 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .. -I ..\..\.. --C99-I.\RTE\_ADCT0ATrigger-IC:\Users\ayaan\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Users\ayaan\AppData\Local\Arm\Packs\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="529" -D_RTE_ -DTM4C123GH6PM -Drvmdk -DPART_LM4F120H5QR-o .\adctestmain.o --omf_browse .\adctestmain.crf --depend .\adctestmain.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5D9B96F8)
 I (../inc/tm4c123gh6pm.h)(0x624F8052)
 I (../inc/ADCT0ATrigger.h)(0x624F8052)
@@ -10,7 +10,7 @@ I (../inc/CortexM.h)(0x624F8052)
 I (../inc/LaunchPad.h)(0x624F8052)
 I (../inc/Texas.h)(0x624F8052)
 I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x5D9B96F2)
-I (Speaker.h)(0x624FD537)
+I (Speaker.h)(0x624FE24C)
 F (..\inc\PLL.c)(0x624F8052)(-c --cpu Cortex-M4 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .. -I ..\..\.. --C99-I.\RTE\_ADCT0ATrigger-IC:\Users\ayaan\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Users\ayaan\AppData\Local\Arm\Packs\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="529" -D_RTE_ -DTM4C123GH6PM -Drvmdk -DPART_LM4F120H5QR-o .\pll.o --omf_browse .\pll.crf --depend .\pll.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5D9B96F8)
 I (..\inc\../inc/PLL.h)(0x624F8052)
@@ -31,13 +31,13 @@ I (..\inc\../inc/tm4c123gh6pm.h)(0x624F8052)
 I (..\inc\../inc/TExaS.h)(0x624F8052)
 I (..\inc\../inc/PLL.h)(0x624F8052)
 F (..\inc\Texas.h)(0x624F8052)()
-F (.\Speaker.h)(0x624FD537)()
-F (.\Speaker.c)(0x624FDEB7)(-c --cpu Cortex-M4 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .. -I ..\..\.. --C99-I.\RTE\_ADCT0ATrigger-IC:\Users\ayaan\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Users\ayaan\AppData\Local\Arm\Packs\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="529" -D_RTE_ -DTM4C123GH6PM -Drvmdk -DPART_LM4F120H5QR-o .\speaker.o --omf_browse .\speaker.crf --depend .\speaker.d)
-I (Speaker.h)(0x624FD537)
+F (.\Speaker.h)(0x624FE24C)()
+F (.\Speaker.c)(0x624FE2D0)(-c --cpu Cortex-M4 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .. -I ..\..\.. --C99-I.\RTE\_ADCT0ATrigger-IC:\Users\ayaan\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Users\ayaan\AppData\Local\Arm\Packs\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="529" -D_RTE_ -DTM4C123GH6PM -Drvmdk -DPART_LM4F120H5QR-o .\speaker.o --omf_browse .\speaker.crf --depend .\speaker.d)
+I (Speaker.h)(0x624FE24C)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5D9B96F8)
 I (DAC.h)(0x624FD572)
 I (../inc/Timer1A.h)(0x624F8052)
-I (..\./inc/tm4c123gh6pm.h)(0x624F8052)
+I (../inc/tm4c123gh6pm.h)(0x624F8052)
 F (.\DAC.h)(0x624FD572)()
 F (.\DAC.c)(0x624FD5FE)(-c --cpu Cortex-M4 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .. -I ..\..\.. --C99-I.\RTE\_ADCT0ATrigger-IC:\Users\ayaan\AppData\Local\Arm\Packs\ARM\CMSIS\5.6.0\CMSIS\Core\Include-IC:\Users\ayaan\AppData\Local\Arm\Packs\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="529" -D_RTE_ -DTM4C123GH6PM -Drvmdk -DPART_LM4F120H5QR-o .\dac.o --omf_browse .\dac.crf --depend .\dac.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5D9B96F8)

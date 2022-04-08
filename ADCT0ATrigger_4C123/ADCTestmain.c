@@ -35,7 +35,7 @@
 #include "math.h"
 #include "Speaker.h"
 
-#define BUFFER_SIZE 15000
+#define BUFFER_SIZE 30000
 
 
 //debug code
@@ -91,7 +91,8 @@ void calculateFreq(double *output, int samplingRate){
 
 
 uint32_t ADCvalue;
-uint16_t buffer[BUFFER_SIZE];
+//uint16_t buffer[BUFFER_SIZE];
+uint8_t sbuffer[BUFFER_SIZE];
 uint32_t idx = 0;
 int isFull = 0;
 int isPlayed = 0;
@@ -100,7 +101,8 @@ void RealTimeTask(uint32_t data){
   PF3 ^= 0x04;           // toggle LED
   ADCvalue = data;
 	if(idx < BUFFER_SIZE){
-		buffer[idx] = ADCvalue;
+		//buffer[idx] = ADCvalue;
+		sbuffer[idx] = ADCvalue / 100;
 		idx++;
 	}else if(idx >= BUFFER_SIZE && k < BUFFER_SIZE){
 		isFull = 1;
@@ -123,8 +125,8 @@ int main(void){
 		if(isFull && !isPlayed){
 			isPlayed = 1;
 			//Sound_Dire();
-			SpeakerPlay(buffer, BUFFER_SIZE);
-			
+			//SpeakerPlay(buffer, BUFFER_SIZE);
+			SpeakerSPlay(sbuffer, BUFFER_SIZE);
 			isFull = 0;
 			
 		}

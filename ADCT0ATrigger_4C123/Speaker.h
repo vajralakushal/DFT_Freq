@@ -10,6 +10,8 @@
 */
 void SpeakerPlay(const uint16_t *pt, uint32_t count);
 
+void SpeakerSPlay(const uint8_t *pt, uint32_t count);
+
 void SpeakerInit(void);
 
 void Sound_Dire(void);

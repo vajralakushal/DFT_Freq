@@ -12,6 +12,7 @@ const unsigned short wave[32] = {
 };
 extern int song;
 const uint16_t *SoundPt;
+const uint8_t *SSoundPt;
 uint32_t Length;	
 uint32_t soundIndex;
 int isPlaying = 0;
@@ -26,6 +27,14 @@ int isPlaying = 0;
 void SoundTask(void){
 		if(isPlaying){
 			DAC_Out(SoundPt[soundIndex]);
+			soundIndex = (soundIndex + 1) % Length;
+		}
+		
+}	
+
+void SSoundTask(void){
+		if(isPlaying){
+			DAC_Out(SSoundPt[soundIndex] * 100);
 			soundIndex = (soundIndex + 1) % Length;
 		}
 		
@@ -45,6 +54,15 @@ void SpeakerPlay(const uint16_t *pt, uint32_t count){
 	SoundPt = pt;
 	isPlaying = 1;
 	NVIC_EN0_R = 1<<19;
+}
+
+void SpeakerSPlay(const uint8_t *pt, uint32_t count){
+	Length = count;
+	soundIndex = 0;
+	SSoundPt = pt;
+	isPlaying = 1;
+	NVIC_EN0_R = 1<<19;
+	Timer1A_Init(&SSoundTask, 80000000/11025, 1);
 }
 
 void Sound_Dire(void){
